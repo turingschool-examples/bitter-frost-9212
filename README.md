@@ -13,6 +13,7 @@ RSpec and Shoulda-Matchers have been installed and set up.
 3. `git clone <paste_repo>`
 4. `cd bitter-frost-9212`
 5. `bundle install`
+6. run `rails db:{drop,create,migrate}`
 
 When you run `bundle exec rspec` you should have 2 passing tests.
 
