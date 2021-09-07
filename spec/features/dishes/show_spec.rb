@@ -18,4 +18,11 @@ RSpec.describe 'Dishes Show Page' do
     expect(page).to have_content(@peperoni.name)
     expect(page).to have_content(@cheese.name)
   end
+
+  it 'includes the total calories for a dish' do
+    visit("/dishes/#{@dish1.id}")
+
+    expect(@dish1.dish_calories).to eq(150)
+    expect(page).to have_content('150')
+  end
 end
