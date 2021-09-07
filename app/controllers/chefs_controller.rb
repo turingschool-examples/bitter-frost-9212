@@ -5,6 +5,10 @@ class ChefsController < ApplicationController
     chef.save
   end
 
+  def show
+    @chef = Chef.find(params[:id])
+  end
+
   private
 
   def chef_params
