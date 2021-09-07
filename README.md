@@ -62,6 +62,7 @@ Two migrations have been made for you. You will need to create migrations for th
 (Note: The plural of dish is dishes. The plural of chef is chefs.)
 
 ```
+Done [x]
 Story 1 of 3
 As a visitor
 When I visit a dish's show page
@@ -70,6 +71,7 @@ And I see a list of ingredients for that dish
 And I see the chef's name
 ```   
 ```   
+Done [x]
 Story 2 of 3
 As a visitor
 When I visit a dish's show page
@@ -77,6 +79,7 @@ I see the total calorie count for that dish.
 ```
 
 ```
+Done [x]
 Story 3 of 3
 As a visitor
 When I visit a chef's show page
@@ -87,6 +90,7 @@ I'm taken to a chef's ingredient index page
 and I can see a unique list of names of all the ingredients that this chef uses
 ```
 ```   
+Done [x]
 Extension
 As a visitor
 When I visit a chef's show page
