@@ -18,11 +18,12 @@ RSpec.describe 'dish show page' do
   it 'shows a list of ingredients for the dish' do
     expect(page).to have_content(@pep.name)
     expect(page).to have_content(@cheese.name)
-    save_and_open_page
+  end
+
+  it 'shows the total calorie count for a dish' do
+    expect(page).to have_content(@pep.calories + @cheese.calories)
   end
 end
-# As a visitorname:
+# As a visitor
 # When I visit a dish's show page
-# I see the dish’s name and description
-# And I see a list of ingredients for that dish
-# And I see the chef's name
+# I see the total calorie count for that dish.
