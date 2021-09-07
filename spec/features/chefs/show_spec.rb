@@ -16,8 +16,17 @@ RSpec.describe 'chef show page' do
     visit "/chefs/#{@chef1.id}"
 
     expect(page).to have_content(@chef1.name)
-    expect(page).to have_link("Spaghetti noodles")
-    expect(page).to have_link("Beef meatballs")
-    expect(page).to have_link("Marinara Sauce")
+    expect(page).to have_link("List of Their Ingredients")
+  end
+
+  it 'takes you to the chefs ingredient index page' do
+    visit "/chefs/#{@chef1.id}"
+
+    click_link "List of Their Ingredients"
+
+    expect(current_path).to eq("/chefs/#{@chef1.id}/ingredients")
+    expect(page).to have_content(@ingredient1.name)
+    expect(page).to have_content(@ingredient2.name)
+    expect(page).to have_content(@ingredient3.name)
   end
 end

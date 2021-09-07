@@ -1,0 +1,3 @@
+class ChefIngredientsController < ApplicationController
+
+end
