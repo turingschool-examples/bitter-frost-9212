@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_162416) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
-    t.string "calories"
+    t.integer "calories"
   end
 
   add_foreign_key "dishes", "chefs"
