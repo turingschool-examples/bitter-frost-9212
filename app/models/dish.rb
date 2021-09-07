@@ -6,4 +6,8 @@ class Dish < ApplicationRecord
   def total_calories
     ingredients.sum(:calories)
   end
+
+  def unique_ingredients
+    ingredients.select(:name).distinct
+  end
 end
