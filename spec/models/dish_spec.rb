@@ -20,5 +20,9 @@ RSpec.describe Dish do
     it 'has the total calorie count' do
       expect(dish.calories).to eq(110)
     end
+
+    it 'has its chefs name' do
+      expect(dish.chef_name).to eq('Gordon Ramsey')
+    end
   end
 end

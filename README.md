@@ -78,7 +78,7 @@ I see the total calorie count for that dish.
 ```
 
 ```
-Done []
+Done [x]
 Story 3 of 3
 As a visitor
 When I visit a chef's show page
