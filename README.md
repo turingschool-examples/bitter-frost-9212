@@ -89,7 +89,7 @@ I'm taken to a chef's ingredient index page
 and I can see a unique list of names of all the ingredients that this chef uses
 ```
 ```   
-Done []
+Done [x]
 Extension
 As a visitor
 When I visit a chef's show page
