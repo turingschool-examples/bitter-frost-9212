@@ -1,6 +1,6 @@
 <section id="attributes">
   <h1><%= @dish.name %></h1>
-  <h3><%= @dish.description %></h3>
+  <p><%= @dish.description %></p>
 </section>
 
 <section id="chef">
@@ -12,4 +12,8 @@
   <% @dish.ingredients.each do |ingredient| %>
     <p><%= ingredient.name %></p>
   <% end %>
+</section>
+
+<section id="calories">
+  <h3>Calories: <%= @dish.cal_count %></h3>
 </section>

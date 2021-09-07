@@ -5,4 +5,8 @@ class Dish < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
+
+  def cal_count
+    ingredients.sum(:calories)
+  end
 end
