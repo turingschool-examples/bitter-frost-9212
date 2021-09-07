@@ -22,7 +22,7 @@ RSpec.describe Chef do
     end
 
     it '#ingredients' do
-      expect(@chef.ingredients).to eq([@bread, @pb, @j, @cheese])
+      expect(@chef.ingredients).to eq([@cheese, @bread, @pb, @j])
     end
   end
 end
