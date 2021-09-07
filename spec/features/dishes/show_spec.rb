@@ -26,4 +26,8 @@ RSpec.describe 'dish show page' do
   it 'has chef name' do
     expect(page).to have_content('Gordon Ramsey')
   end
+
+  it 'has calories' do
+    expect(page).to have_content(110)
+  end
 end
