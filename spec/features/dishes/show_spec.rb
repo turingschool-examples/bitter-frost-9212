@@ -34,7 +34,9 @@ RSpec.describe 'the dishes show page' do
     expect(page).to have_content("Ingredients: noodles, sauce")
   end
 
-  xit "has the chef's name" do
+  it "has the chef's name" do
+    visit "/dishes/#{@spaghetti.id}"
 
+    expect(page).to have_content("Chef: Swedish Chef")
   end
 end
