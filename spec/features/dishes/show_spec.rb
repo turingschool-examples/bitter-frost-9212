@@ -19,11 +19,15 @@ RSpec.describe 'the dish show page' do
   end
 
   it "shows the dish's name and description" do
+    visit "/dishes/#{@dish_1.id}"
+
     expect(page).to have_content(@dish_1.name)
     expect(page).to have_content(@dish_1.description)
   end
 
   it "shows a list of ingredients for the dish" do
+    visit "/dishes/#{@dish_1.id}"
+
     expect(page).to have_content(@ingred_1.name)
     expect(page).to have_content(@ingred_2.name)
     expect(page).to have_content(@ingred_3.name)
@@ -32,6 +36,8 @@ RSpec.describe 'the dish show page' do
   end
 
   it "shows the dish's chef's name" do
+    visit "/dishes/#{@dish_1.id}"
+    save_and_open_page
     expect(page).to have_content(@chef.name)
   end
 end
