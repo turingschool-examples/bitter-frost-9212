@@ -44,6 +44,7 @@ RSpec.describe 'chef show page' do
     dish2.ingredients << ingredient3
 
     dish3.ingredients << ingredient2
+    dish3.ingredients << ingredient3
     dish3.ingredients << ingredient4
 
     visit "/chefs/#{chef.id}"
