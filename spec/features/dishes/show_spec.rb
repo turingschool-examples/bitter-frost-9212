@@ -1,13 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Dish do
-  describe 'relationships' do
-    it { should belong_to(:chef) }
-    it { should have_many(:dish_ingredients) }
-    it { should have_many(:ingredients).through(:dish_ingredients) }
-  end
-
-  it 'can calculate total calories in a dish' do
+RSpec.describe 'show page' do
+  before :each do
     @chef = Chef.create!(name: "Chef Remy")
     @spag = @chef.dishes.create!(name: "Spaghetti and Meatballs", description: "Spaghetti noodles topped with marinara and meatballs")
     @lob_rav = @chef.dishes.create!(name: "Lobster Ravioloi", description: "Lobster filled ravioli in a cream sauce")
@@ -21,10 +15,21 @@ RSpec.describe Dish do
     DishIngredient.create!(dish: @spag, ingredient: @meatballs)
     DishIngredient.create!(dish: @lob_rav, ingredient: @ravioli)
     DishIngredient.create!(dish: @lob_rav, ingredient: @cream_sauce)
-
-    expect(@spag.calorie_count).to eq(580)
-    expect(@lob_rav.calorie_count).to eq(725)
   end
 
+  it 'shows the dish name and description, ingredients, and chef name' do
+    visit "/dishes/#{@spag.id}"
+    expect(page).to have_content(@spag.name)
+    expect(page).to have_content(@spag.description)
+    expect(page).to have_content(@spaghetti.name)
+    expect(page).to have_content(@marinara.name)
+    expect(page).to have_content(@meatballs.name)
+    expect(page).to have_content(@spag.chef.name)
+  end
 
+  it 'should have a calorie count for the dish' do
+    visit "/dishes/#{@spag.id}"
+    expect(page).to have_content("580 calories")
+
+  end
 end
