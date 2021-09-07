@@ -15,4 +15,15 @@ class Chef < ApplicationRecord
     end
     list.chop.chop
   end
+
+  # def popular_ingredients
+  #   binding.pry
+  # end
 end
+
+# Ingredient.joins(dishes: :dish_ingredients).
+#                          joins(dishes: :chef).
+#                          where("chefs.id = #{id}").
+#                          select(:name).
+#                          group(:id).
+#                          order(:name)
