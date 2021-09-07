@@ -10,6 +10,7 @@ RSpec.describe 'dishes show page' do
     @dish_1.ingredients << @ingredient_1
     @dish_1.ingredients << @ingredient_2
     @dish_1.ingredients << @ingredient_3
+    @chef_1.dishes << @dish_1
   end
 
   it 'displays a dish and attributes' do
@@ -17,5 +18,19 @@ RSpec.describe 'dishes show page' do
 
     expect(page).to have_content(@dish_1.name)
     expect(page).to have_content(@dish_1.description)
+  end
+
+  it 'displays ingredients list' do
+    visit "/dishes/#{@dish_1.id}"
+
+    expect(page).to have_content(@ingredient_1.name)
+    expect(page).to have_content(@ingredient_2.name)
+    expect(page).to have_content(@ingredient_3.name)
+  end
+
+  it 'displays chef name' do
+    visit "/dishes/#{@dish_1.id}"
+
+    expect(page).to have_content(@chef_1.name)
   end
 end
