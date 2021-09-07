@@ -10,4 +10,8 @@ class Dish < ApplicationRecord
     end
     list.chop.chop
   end
+
+  def calories
+    ingredients.sum(:calories)
+  end
 end
