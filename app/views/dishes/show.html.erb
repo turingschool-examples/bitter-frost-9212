@@ -1,4 +1,5 @@
 <h3>Dish's Name: <%= @dish.name %> </h3>
 <h3>Description: <%= @dish.description %> </h3>
 <h3>Ingredients: <%= @dish.ingredients %> </h3>
-<h3>Chef's Name: <%= @chef.name %> </h3>
+<h3>Total Calories: <%= @dish.ingredients.sum(:calories) %></h3>
+<h3>Chef's Name: <%= @dish.chef.name %> </h3>

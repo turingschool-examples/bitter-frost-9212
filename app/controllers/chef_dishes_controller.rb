@@ -1,6 +1,5 @@
-class ChefsController < ApplicationController
+class ChefDishesController < ApplicationController
   def index
-    @chefs = Chef.all
   end
 
   def show
@@ -12,9 +11,10 @@ class ChefsController < ApplicationController
   end
 
   def create
-    chef = Chef.create(chef_params)
+    @chef = Chef.find(params([:id])
+    @dish = @chef.dishes.create!(dish_params)
 
-    redirect_to "/chefs"
+    redirect_to "/chefs/#{chef.id}/dishes"
   end
 
   def edit
@@ -39,7 +39,8 @@ class ChefsController < ApplicationController
 
   private
 
-  def chef_params
-    params.permit(:name)
+  def dish_params
+    params.permit(:name, :description)
   end
+
 end

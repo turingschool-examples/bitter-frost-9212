@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe Dish do
+RSpec.describe "Chef Ingredient Page" do
   before :each do
     @chef = Chef.create!(name: "Chef Remy")
     @dish = @chef.dishes.create!(name: "Pasta", description: "Meatball pasta")
@@ -9,13 +9,12 @@ RSpec.describe Dish do
     @ingredient2 = @dish.ingredients.create!(name: "Meatball", calories: 90)
   end
 
-  describe 'relationships' do
-    it { should belong_to(:chef) }
-  end
+  describe "Story 3" do
+    it "can show that chef's ingredients" do
+      visit "/chefs/#{@chef.id}/ingredients"
 
-  # describe "#methods" do
-  #   it "can calculate the sum of all ingredients in a dish" do
-  #     expect(Dish.total_calories_count).to eq(200)
-  #   end
-  # end
+      expect(page).to have_content(@ingredient1.name)
+      expect(page).to have_content(@ingredient2.name)
+    end
+  end
 end
