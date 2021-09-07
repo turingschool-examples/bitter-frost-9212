@@ -19,6 +19,6 @@ RSpec.describe Ingredient do
     dish.ingredients << ingredient1
     dish.ingredients << ingredient2
 
-    expect(Ingredient.ingredients_by_chef).to eq([ingredient1, ingredient2])
+    expect(Ingredient.ingredients_by_chef(chef)).to eq([ingredient1, ingredient2])
   end
 end
