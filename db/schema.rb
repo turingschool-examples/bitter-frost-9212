@@ -10,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_07_132011) do
+ActiveRecord::Schema.define(version: 2021_09_07_151151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "airlines", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "chefs", force: :cascade do |t|
     t.string "name"
@@ -36,35 +30,23 @@ ActiveRecord::Schema.define(version: 2021_09_07_132011) do
     t.index ["chef_id"], name: "index_dishes_on_chef_id"
   end
 
-  create_table "flight_logs", force: :cascade do |t|
-    t.bigint "flight_id"
-    t.bigint "passenger_id"
+  create_table "ingredient_dishes", force: :cascade do |t|
+    t.bigint "dish_id"
+    t.bigint "ingredient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["flight_id"], name: "index_flight_logs_on_flight_id"
-    t.index ["passenger_id"], name: "index_flight_logs_on_passenger_id"
+    t.index ["dish_id"], name: "index_ingredient_dishes_on_dish_id"
+    t.index ["ingredient_id"], name: "index_ingredient_dishes_on_ingredient_id"
   end
 
-  create_table "flights", force: :cascade do |t|
-    t.integer "number"
-    t.string "date"
-    t.string "departure_city"
-    t.string "arrival_city"
-    t.bigint "airline_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["airline_id"], name: "index_flights_on_airline_id"
-  end
-
-  create_table "passengers", force: :cascade do |t|
+  create_table "ingredients", force: :cascade do |t|
     t.string "name"
-    t.integer "age"
+    t.integer "calories"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "dishes", "chefs"
-  add_foreign_key "flight_logs", "flights"
-  add_foreign_key "flight_logs", "passengers"
-  add_foreign_key "flights", "airlines"
+  add_foreign_key "ingredient_dishes", "dishes"
+  add_foreign_key "ingredient_dishes", "ingredients"
 end
