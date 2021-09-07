@@ -28,7 +28,7 @@ describe 'chef show page' do
     expect(page).to have_link("Ingredients")
 
     click_link "Ingredients"
-    save_and_open_page
+    
     expect(page).to have_content(@cheese.name)
     expect(page).to have_content(@bread.name)
     expect(page).to have_content(@pb.name)
