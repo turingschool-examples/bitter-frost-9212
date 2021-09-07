@@ -1,28 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Chef do
-  describe 'relationships' do
-    it { should have_many(:dishes) }
-  end
-
-  it '#all_ingredients' do
-    @chef = Chef.create!(name:"Gordon")
-    @dish_1 = Dish.create!(name:"Lasagna", description:"layered pasta dish", chef_id: @chef.id)
-
-    @ingredient_1 = Ingredient.create!(name:"Mozzarella", calories: 200)
-    @ingredient_2 = Ingredient.create!(name:"Ricotta", calories: 500)
-    @ingredient_3 = Ingredient.create!(name:"Beef", calories: 700)
-    @ingredient_4 = Ingredient.create!(name:"Lasagna Noodles", calories: 250)
-
-    @dish_ing_1 = DishIngredient.create!(dish: @dish_1, ingredient: @ingredient_1)
-    @dish_ing_2 = DishIngredient.create!(dish: @dish_1, ingredient: @ingredient_2)
-    @dish_ing_3 = DishIngredient.create!(dish: @dish_1, ingredient: @ingredient_3)
-    @dish_ing_4 = DishIngredient.create!(dish: @dish_1, ingredient: @ingredient_4)
-
-    expect(@chef.all_ingredients).to eq([@ingredient_1, @ingredient_2, @ingredient_3, @ingredient_4])
-  end
-
-  it "#most_popular_ingredients" do
+RSpec.describe 'chef show page' do
+  before :each do
     @chef = Chef.create!(name:"Gordon")
     @dish_1 = Dish.create!(name:"Lasagna", description:"layered pasta dish", chef_id: @chef.id)
     @dish_2 = Dish.create!(name:"Pizza", description:"We all know", chef_id: @chef.id)
@@ -55,6 +34,26 @@ RSpec.describe Chef do
     @dish_ing_11 = DishIngredient.create!(dish: @dish_3, ingredient: @ingredient_7)
     @dish_ing_12 = DishIngredient.create!(dish: @dish_3, ingredient: @ingredient_8)
 
-    expect(@chef.most_popular_ingredients).to eq([@ingredient_6, @ingredient_8, @ingredient_1])
   end
+
+  it 'shows the chef name' do
+    visit "/chefs/#{@chef.id}"
+    expect(page).to have_content(@chef.name)
+  end
+
+  it 'has a link to chef ingredient index page' do
+    visit "/chefs/#{@chef.id}"
+
+    click_link "View Ingredients"
+    expect(current_path).to eq("/chefs/#{@chef.id}/ingredients")
+  end
+
+  it 'shows the chefs three most_popular ingredients' do
+    visit "/chefs/#{@chef.id}"
+
+    expect(page).to have_content(@ingredient_1.name)
+    expect(page).to have_content(@ingredient_6.name)
+    expect(page).to have_content(@ingredient_8.name)
+  end
+
 end
