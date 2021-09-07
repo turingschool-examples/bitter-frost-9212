@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  resources :dishes, only: [:show, :new, :destroy]
+  resources :dishes, only: :show
 
-  resources :chefs, only: [:show, :new, :destroy]
-  get '/chefs/:id/ingredients', to: 'chef_ingredients#index', as: 'chef_ingredients'
-
-  resources :ingredients, only: [:show, :new, :destroy]
+  resources :chefs, only: :show do
+    resources :ingredients, only: :index
+  end
 end
