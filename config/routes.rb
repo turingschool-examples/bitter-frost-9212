@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   # Should we want to expand the application outside of the requirments
   # for the IC, I would go with:
   # get '/chefs/:chef_id/ingredients' to: 'chef_ingredients#index'
-  # or create an un-nested ingredients resource, depending on the situation.
+  # or create another un-nested ingredients resource depending on the situation.
 end
