@@ -21,6 +21,6 @@ RSpec.describe Chef do
     @dish_ing1 = DishIngredient.create!(dish_id: @dish1.id, ingredient_id: @ingredient1.id)
     @dish_ing2 = DishIngredient.create!(dish_id: @dish1.id, ingredient_id: @ingredient2.id)
 
-    expect(@chef1.find_ingredients).to eq([@ingredient1, @ingredient2])
+    expect(@chef1.ingredients).to eq([@ingredient1, @ingredient2])
   end
 end
