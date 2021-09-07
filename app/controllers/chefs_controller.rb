@@ -1,5 +1,6 @@
 class ChefsController < ApplicationController
   def show
     @chef = Chef.find(params[:id])
-  end 
+    @most_popular = @chef.most_popular_ingredients
+  end
 end

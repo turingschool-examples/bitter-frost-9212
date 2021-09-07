@@ -2,4 +2,12 @@
 
 <h3><%= "Name: #{@chef.name}" %></h3><br><br>
 
+<h4>Most Popular Ingredients</h4>
+<ul>
+<% @most_popular.each do |ingredient| %>
+<li> <%= ingredient.name %> </<li>
+<%end%>
+</ul><br><br>
+
+
 <%= link_to "View Ingredients", "/chefs/#{@chef.id}/ingredients" %>
