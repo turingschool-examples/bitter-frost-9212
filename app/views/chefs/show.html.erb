@@ -1,2 +1,7 @@
 <h3><%= @chef.name %></h3>
+<ul>Most Popular Ingredients:
+  <% @chef.popular_ing.each do |ing| %>
+    <li><%= ing.name %></li>
+  <% end %>
+</ul>
 <%= button_to "#{@chef.name} Trusted Ingredients", "/chefs/#{@chef.id}/ingredients", method: :get %>
