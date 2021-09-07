@@ -4,4 +4,21 @@ RSpec.describe Chef do
   describe 'relationships' do
     it { should have_many(:dishes) }
   end
+
+  it '#all_ingredients' do
+    @chef = Chef.create!(name:"Gordon")
+    @dish_1 = Dish.create!(name:"Lasagna", description:"layered pasta dish", chef_id: @chef.id)
+
+    @ingredient_1 = Ingredient.create!(name:"Mozzarella", calories: 200)
+    @ingredient_2 = Ingredient.create!(name:"Ricotta", calories: 500)
+    @ingredient_3 = Ingredient.create!(name:"Beef", calories: 700)
+    @ingredient_4 = Ingredient.create!(name:"Lasagna Noodles", calories: 250)
+
+    @dish_ing_1 = DishIngredient.create!(dish: @dish_1, ingredient: @ingredient_1)
+    @dish_ing_2 = DishIngredient.create!(dish: @dish_1, ingredient: @ingredient_2)
+    @dish_ing_3 = DishIngredient.create!(dish: @dish_1, ingredient: @ingredient_3)
+    @dish_ing_4 = DishIngredient.create!(dish: @dish_1, ingredient: @ingredient_4)
+
+    expect(@chef.all_ingredients).to eq([@ingredient_1, @ingredient_2, @ingredient_3, @ingredient_4])
+  end
 end

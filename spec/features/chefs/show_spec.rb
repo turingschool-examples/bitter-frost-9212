@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Dish show page' do
+RSpec.describe 'chef show page' do
   before :each do
     @chef = Chef.create!(name:"Gordon")
     @dish_1 = Dish.create!(name:"Lasagna", description:"layered pasta dish", chef_id: @chef.id)
@@ -16,35 +16,18 @@ RSpec.describe 'Dish show page' do
     @dish_ing_4 = DishIngredient.create!(dish: @dish_1, ingredient: @ingredient_4)
   end
 
-  it 'shows the dishes name' do
-    visit "/dishes/#{@dish_1.id}"
-
-    expect(page).to have_content(@dish_1.name)
-  end
-
-  it 'shows the dishes description' do
-    visit "/dishes/#{@dish_1.id}"
-
-    expect(page).to have_content(@dish_1.description)
-  end
-
-  it 'lists the dish ingredients' do
-    visit "/dishes/#{@dish_1.id}"
-
-    expect(page).to have_content(@ingredient_1.name)
-    expect(page).to have_content(@ingredient_2.name)
-    expect(page).to have_content(@ingredient_3.name)
-    expect(page).to have_content(@ingredient_4.name)
-  end
-
   it 'shows the chef name' do
-    visit "/dishes/#{@dish_1.id}"
+    visit "/chefs/#{@chef.id}"
     expect(page).to have_content(@chef.name)
   end
 
-  it 'shows the total calorie count for a dish' do
-    visit "/dishes/#{@dish_1.id}"
+  it 'has a link to chef ingredient index page' do
+    visit "/chefs/#{@chef.id}"
+
+    click_link "View Ingredients"
+    save_and_open_page
     
-    expect(page).to have_content(1650)
+    expect(current_path).to eq("/chefs/#{@chef.id}/ingredients")
   end
+
 end
