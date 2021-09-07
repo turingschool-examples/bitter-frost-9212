@@ -7,10 +7,10 @@ RSpec.describe 'a dishs show page' do
 
     @pizza = @remy.dishes.create!(name: "Pizza", description: "Veggie supreme")
 
-    @sauce = Ingredient.create!(name: "Pizza Sauce", calories: "50")
-    @dough = Ingredient.create!(name: "Pizza Dough", calories: "100")
-    @cheese = Ingredient.create!(name: "Vegan Cheese", calories: "200")
-    @olives = Ingredient.create!(name: "Olives", calories: "20")
+    @sauce = @pizza.ingredients.create!(name: "Pizza Sauce", calories: "50")
+    @dough = @pizza.ingredients.create!(name: "Pizza Dough", calories: "100")
+    @cheese = @pizza.ingredients.create!(name: "Vegan Cheese", calories: "200")
+    @olives = @pizza.ingredients.create!(name: "Olives", calories: "20")
   end
 
   it "shows the dish's attributes" do
