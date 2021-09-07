@@ -15,24 +15,17 @@ RSpec.describe 'a chefs show page' do
 
     @pasta = @mac.ingredients.create!(name: "Pasta", calories: 200)
     @mac.ingredients << @cheese
-
   end
 
-  it "shows the chef's attributes" do
-    visit "/chefs/#{@remy.id}"
+  it "displays the chef's name and all unique ingredients" do
+    visit "/chefs/#{@remy.id}/ingredients"
 
-    within('#attributes') do
-      expect(page).to have_content(@remy.name)
-    end
-  end
+    expect(page).to have_content("Chef Remy's Ingredients")
 
-  it "links to the chef's ingredients" do
-    visit "/chefs/#{@remy.id}"
-
-    within('#ingredients') do
-      expect(page).to have_link("View Chef's Ingredients")
-      click_link("View Chef's Ingredients")
-    end
-    expect(current_path).to eq("/chefs/#{@remy.id}/ingredients")
+    expect(page).to have_content(@sauce.name)
+    expect(page).to have_content(@dough.name)
+    expect(page).to have_content(@cheese.name, count: 1)
+    expect(page).to have_content(@olives.name)
+    expect(page).to have_content(@pasta.name)
   end
 end
