@@ -4,7 +4,7 @@ RSpec.describe Dish do
   describe 'relationships' do
     it { should belong_to(:chef) }
     it {should have_many :dish_ingredients}
-    it {should have_many(:dishes).through(:dish_ingredients)}
+    it {should have_many(:ingredients).through(:dish_ingredients)}
   end
 
   describe 'validations' do
