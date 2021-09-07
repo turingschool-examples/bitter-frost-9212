@@ -12,7 +12,7 @@ describe 'dish show page' do
   
   it 'has a its name, description, ingredients, and chef' do
     visit "/dishes/#{@dish.id}"
-
+    
     expect(page).to have_content(@dish.name)
     expect(page).to have_content(@dish.description)
     expect(page).to have_content(@cheese.name)
