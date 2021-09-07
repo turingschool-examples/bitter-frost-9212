@@ -10,7 +10,6 @@ RSpec.describe 'dishes show page' do
     @dish_1.ingredients << @ingredient_1
     @dish_1.ingredients << @ingredient_2
     @dish_1.ingredients << @ingredient_3
-    @chef_1.dishes << @dish_1
   end
 
   it 'displays a dish and attributes' do
@@ -32,5 +31,11 @@ RSpec.describe 'dishes show page' do
     visit "/dishes/#{@dish_1.id}"
 
     expect(page).to have_content(@chef_1.name)
+  end
+
+  it 'displays total calories' do
+    visit "/dishes/#{@dish_1.id}"
+
+    expect(page).to have_content('Total Calories: 215')
   end
 end
