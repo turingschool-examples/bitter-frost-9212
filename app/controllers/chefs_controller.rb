@@ -5,6 +5,11 @@ class ChefsController < ApplicationController
     chef.save
   end
 
+  def index
+    @chef = Chef.find(params[:chef_id])
+    @chef.dishes
+  end
+
   def show
     @chef = Chef.find(params[:id])
   end
@@ -13,5 +18,9 @@ class ChefsController < ApplicationController
 
   def chef_params
     params.permit(:name)
+  end
+
+  def ingredients
+    dish.ingredients
   end
 end

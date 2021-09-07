@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :chefs
   resources :dishes
   resources :ingredients
   resources :dish_ingredients
+  get '/chefs/:chef_id/ingredients', to: 'chefs#index'
+
 end
+                #     chefs GET    /chefs(.:format)                       chefs#index
+                #           POST   /chefs(.:format)                       chefs#create
+                #  new_chef GET    /chefs/new(.:format)                   chefs#new
+                # edit_chef GET    /chefs/:id/edit(.:format)              chefs#edit
+                #      chef GET    /chefs/:id(.:format)                   chefs#show
+                #           PATCH  /chefs/:id(.:format)                   chefs#update
+                #           PUT    /chefs/:id(.:format)                   chefs#update
+                #           DELETE /chefs/:id(.:format)                   chefs#destroy
     #               dishes GET    /dishes(.:format)                       dishes#index
     #                      POST   /dishes(.:format)                       dishes#create
     #             new_dish GET    /dishes/new(.:format)                   dishes#new
