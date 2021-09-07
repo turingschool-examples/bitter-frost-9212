@@ -48,9 +48,10 @@ RSpec.describe 'the chef show page' do
 
   it "shows the chef's top three ingredients" do
     visit "/chefs/#{@chef.id}"
+    save_and_open_page
 
-    expect(page).to have_content(@igred_2)
-    expect(page).to have_content(@igred_3)
-    expect(page).to have_content(@igred_4)
+    expect(page).to have_content(@ingred_2.name)
+    expect(page).to have_content(@ingred_3.name)
+    expect(page).to have_content(@ingred_4.name)
   end
 end
