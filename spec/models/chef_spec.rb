@@ -28,12 +28,16 @@ RSpec.describe Chef do
   end
 
   describe 'instance methods' do
-    it 'has list of ingredients' do
-      expect(@chef_1.all_ing).to eq([@ingredient_1, @ingredient_2, @ingredient_3, @ingredient_4, @ingredient_5, @ingredient_6])
+    it 'has list of all ingredients' do
+      expect(@chef_1.all_ing).to eq([@ingredient_1, @ingredient_2, @ingredient_3, @ingredient_3, @ingredient_4, @ingredient_5, @ingredient_1, @ingredient_3, @ingredient_4, @ingredient_6])
     end
-    
+
+    it 'has list of unique ingredients' do
+      expect(@chef_1.all_ing_uniq).to eq([@ingredient_1, @ingredient_2, @ingredient_3, @ingredient_4, @ingredient_5, @ingredient_6])
+    end
+
     it 'has most popular ingredients' do
-      expect(@chef_1.popular_ing).to eq([@ingredient_3, @ingredient_1, @ingredient_4])
+      expect(@chef_1.popular_ing).to eq([@ingredient_3, @ingredient_4, @ingredient_1])
     end
   end
 end
