@@ -30,5 +30,11 @@ RSpec.describe 'Dishes Show Page' do
 
         expect(page).to have_content(@chef1.name)
       end
+
+      it "shows a dishes total calory count" do
+        visit "/dishes/#{@dish1.id}"
+        save_and_open_page
+        expect(page).to have_content(175)
+      end
     end
 end
