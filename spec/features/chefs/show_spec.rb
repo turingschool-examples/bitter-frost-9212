@@ -19,7 +19,6 @@ RSpec.describe 'a chefs show page' do
     @marg_pizza.ingredients << @sauce
     @marg_pizza.ingredients << @dough
     @marg_pizza.ingredients << @cheese
-
   end
 
   it "shows the chef's attributes" do
@@ -42,7 +41,7 @@ RSpec.describe 'a chefs show page' do
 
   it "shows the 3 most popular ingredients" do
     visit "/chefs/#{@remy.id}"
-
+save_and_open_page
     within('#popular_ingred') do
       expect(page).to have_content("Most Popular Ingredients")
       expect(page).to have_content(@cheese.name)
