@@ -1,0 +1,9 @@
+<%= @dish.name %>
+<%= @dish.description %>
+<% @dish.ingredients.each do |ing| %>
+  <%= ing.name %>
+<% end %>
+
+<%= @dish.chef.name %>
+
+<%= "total calories: #{@dish.calories}" %>
