@@ -1,0 +1,4 @@
+class IngredientsController < ActionController
+  
+
+end
