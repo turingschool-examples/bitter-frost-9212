@@ -39,13 +39,13 @@ RSpec.describe 'Dish show page' do
 
   it 'shows the chef name' do
     visit "/dishes/#{@dish_1.id}"
-    save_and_open_page
     expect(page).to have_content(@chef.name)
   end
 
   it 'shows the total calorie count for a dish' do
     visit "/dishes/#{@dish_1.id}"
-
+    save_and_open_page
+    
     expect(page).to have_content(1650)
   end
 end
