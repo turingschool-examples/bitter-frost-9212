@@ -1,10 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Chef do
-  describe 'relationships' do
-    it { should have_many(:dishes) }
-  end
-
+RSpec.describe 'the dishes show page' do
   before(:each) do
     @swedish_chef = Chef.create!(name: "Swedish Chef")
     @emeril       = Chef.create!(name: "Emeril Lagassi")
@@ -25,10 +21,32 @@ RSpec.describe Chef do
     @meatball_sand.ingredients << @sauce
   end
 
-  describe '.ingredients' do
-    it 'lists ingrediets the chef uses' do
-      expect(@swedish_chef.ingredients).to eq("noodles, sauce")
-      expect(@emeril.ingredients).to eq("bread, meatballs, sauce")
-    end
+  it "has a dish's name and description" do
+    visit "/dishes/#{@spaghetti.id}"
+
+    expect(page).to have_content("Spaghetti")
+    expect(page).to have_content("It's noodles and sauce. What else do you want?!?")
+  end
+
+  it "has a list of ingredients" do
+    visit "/dishes/#{@spaghetti.id}"
+
+    expect(page).to have_content("Ingredients: noodles, sauce")
+  end
+
+  it "has the chef's name" do
+    visit "/dishes/#{@spaghetti.id}"
+
+    expect(page).to have_content("Chef: Swedish Chef")
+  end
+
+  it 'has a calorie count for the dish' do
+    visit "/dishes/#{@spaghetti.id}"
+
+    expect(page).to have_content("Calories: 450")
+
+    visit "/dishes/#{@meatball_sand.id}"
+
+    expect(page).to have_content("Calories: 750")
   end
 end
