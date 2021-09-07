@@ -4,10 +4,13 @@ class Ingredient < ApplicationRecord
 
   def self.ingredients_by_chef(chef)
     # require "pry"; binding.pry
-    arr = []
-    chef.dishes.each do |dish|
-      arr << dish.ingredients
-    end
-    arr.flatten.uniq
+    # arr = []
+    # chef.dishes.each do |dish|
+    #   arr << dish.ingredients
+    # end
+    # arr.flatten.uniq
+
+    # require "pry"; binding.pry
+    Ingredient.joins(:dishes).where('chef_id = ?', chef.id).distinct
   end
 end
