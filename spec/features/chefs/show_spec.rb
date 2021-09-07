@@ -13,7 +13,6 @@ RSpec.describe 'chef show page' do
   it 'shows the chef attributes and ingredients they use' do
     visit "/chefs/#{@chef.id}"
     expect(page).to have_content(@chef.name)
-    expect(page).to have_content(@ingredient_1.name)
-    # expect(page).to have_content(@ingredient_2.name)
+    expect(page).to have_link("view all ingredients")
   end
 end
