@@ -1,11 +1,9 @@
+# spec/features/chefs/show_spec.rb
 require 'rails_helper'
 
-RSpec.describe Chef do
-  describe 'relationships' do
-    it { should have_many(:dishes) }
-  end
-
+RSpec.describe 'the chef show page' do
   before(:each) do
+
     @chef = Chef.create!(name: "Ida Olson")
     @dish_1 = Dish.create!(name: 'Capellini Pomodoro', description: "Capellini pomodoro is a classic combo of pasta, tomato sauce, garlic, olive oil, and basil.", chef_id: @chef.id)
     @ingred_1 = Ingredient.create!(name: "capellini", calories: 120)
@@ -33,12 +31,27 @@ RSpec.describe Chef do
     @dish_2.ingredients << @ingred_11
   end
 
-  it "returns an array of all the ingredients used by the chef with no repeats" do
-    expect(@chef.ingredients_index).to eq(["capellini", "tomato sauce", "garlic", "olive oil", "basil", "penne", "parsley", "red pepper flakes"])
+  it "shows the name of the chef" do
+    visit "/chefs/#{@chef.id}"
+
+    expect(page).to have_content(@chef.name)
   end
 
+  it "has a link to the chef's ingredient index" do
+    visit "/chefs/#{@chef.id}"
+    # save_and_open_page
+    expect(has_link?("View Chef's Ingredients")).to eq(true)
 
-  it "returns an array of the three most popular ingredients" do
-    expect(@chef.popular_ingredients).to eq(["tomato sauce", "garlic", "olive oil"])
+    click_on "View Chef's Ingredients"
+    expect(current_path).to eq("/chefs/#{@chef.id}/ingredients")
+  end
+
+  it "shows the chef's top three ingredients" do
+    visit "/chefs/#{@chef.id}"
+    save_and_open_page
+
+    expect(page).to have_content(@ingred_2.name)
+    expect(page).to have_content(@ingred_3.name)
+    expect(page).to have_content(@ingred_4.name)
   end
 end

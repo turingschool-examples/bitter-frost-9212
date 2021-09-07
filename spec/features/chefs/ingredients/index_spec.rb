@@ -1,11 +1,9 @@
+# spec/features/chefs/ingredients/index_spec.rb
 require 'rails_helper'
 
-RSpec.describe Chef do
-  describe 'relationships' do
-    it { should have_many(:dishes) }
-  end
-
+RSpec.describe 'the chef restaurants index page' do
   before(:each) do
+
     @chef = Chef.create!(name: "Ida Olson")
     @dish_1 = Dish.create!(name: 'Capellini Pomodoro', description: "Capellini pomodoro is a classic combo of pasta, tomato sauce, garlic, olive oil, and basil.", chef_id: @chef.id)
     @ingred_1 = Ingredient.create!(name: "capellini", calories: 120)
@@ -33,12 +31,20 @@ RSpec.describe Chef do
     @dish_2.ingredients << @ingred_11
   end
 
-  it "returns an array of all the ingredients used by the chef with no repeats" do
-    expect(@chef.ingredients_index).to eq(["capellini", "tomato sauce", "garlic", "olive oil", "basil", "penne", "parsley", "red pepper flakes"])
-  end
-
-
-  it "returns an array of the three most popular ingredients" do
-    expect(@chef.popular_ingredients).to eq(["tomato sauce", "garlic", "olive oil"])
+  it "shows a list of a chef's ingredients" do
+    visit "/chefs/#{@chef.id}/ingredients"
+    # save_and_open_page
+    
+    expect(page).to have_content(@ingred_1.name)
+    expect(page).to have_content(@ingred_2.name)
+    expect(page).to have_content(@ingred_3.name)
+    expect(page).to have_content(@ingred_4.name)
+    expect(page).to have_content(@ingred_5.name)
+    expect(page).to have_content(@ingred_6.name)
+    expect(page).to have_content(@ingred_7.name)
+    expect(page).to have_content(@ingred_8.name)
+    expect(page).to have_content(@ingred_9.name)
+    expect(page).to have_content(@ingred_10.name)
+    expect(page).to have_content(@ingred_11.name)
   end
 end
