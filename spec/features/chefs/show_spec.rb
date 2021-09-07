@@ -27,8 +27,20 @@ RSpec.describe 'the chef show page' do
     expect(page).to have_content("Swedish Chef")
   end
 
-  xit 'has a link to the ingredients they use' do
+  it 'has a link to the ingredients they use' do
+    visit "/chefs/#{@swedish_chef.id}"
 
+    click_link("Ingredients Used")
+
+    expect(current_path).to eq("/chefs/#{@swedish_chef.id}/ingredients")
+    expect(page).to have_content("noodles, sauce")
+
+    visit "/chefs/#{@emeril.id}"
+
+    click_link("Ingredients Used")
+
+    expect(current_path).to eq("/chefs/#{@emeril.id}/ingredients")
+    expect(page).to have_content("bread, meatballs, sauce")
   end
 end
 
