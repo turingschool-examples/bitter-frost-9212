@@ -4,4 +4,8 @@ class Ingredient < ApplicationRecord
 
   validates :name, presence: true
   validates :calories, presence: true
+
+  def self.for_chef(chef_id)
+    joins(:dishes).where("dishes.chef_id = ?", chef_id).uniq
+  end
 end
