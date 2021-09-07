@@ -33,7 +33,7 @@ RSpec.describe 'Dishes Show Page' do
 
       it "shows a dishes total calory count" do
         visit "/dishes/#{@dish1.id}"
-        save_and_open_page
+      
         expect(page).to have_content(175)
       end
     end
