@@ -27,5 +27,18 @@ RSpec.describe 'Dish Show Page' do
       expect(page).to have_content('Basil')
       expect(page).to have_content('Chef Remy')
     end
+
+    it 'displays total calories in a dish' do
+      chef = Chef.create!(name: 'Chef Remy')
+      dish = Dish.create!(name: 'Pasta Al Dente', description: 'Fresh pasta with your favorite sauce', chef_id: chef.id)
+      ingredient1 = Ingredient.create!( name: 'Mozzarella', calories: 78)
+      ingredient2 = Ingredient.create!( name: 'Basil', calories: 8)
+
+      dish.ingredients << ingredient1
+      dish.ingredients << ingredient2
+
+      visit dish_path(dish)
+      expect(page).to have_content(86)
+    end
   end
 end
