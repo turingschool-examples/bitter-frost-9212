@@ -1,0 +1,14 @@
+<section id="attributes">
+  <h1><%= @chef.name %></h1>
+</section>
+
+<section id="ingredients">
+  <h3><%= link_to "View Chef's Ingredients", "/chefs/#{@chef.id}/ingredients" %></h3>
+</section>
+
+<section id="popular_ingred">
+  <h3>Most Popular Ingredients</h3>
+  <% @ingredients.each do |ingredient| %>
+    <p><%= ingredient.name %></p>
+  <% end %>
+</section>
