@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'a chefs show page' do
+RSpec.describe 'a chefs ingredients index page' do
 
   before :each do
     @remy = Chef.create!(name: "Remy")
