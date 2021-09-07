@@ -36,4 +36,9 @@ RSpec.describe Chef do
   it "returns an array of all the ingredients used by the chef with no repeats" do
     expect(@chef.ingredients_index).to eq(["capellini", "tomato sauce", "garlic", "olive oil", "basil", "penne", "parsley", "red pepper flakes"])
   end
+
+
+  it "returns an array of the three most popular ingredients" do
+    expect(@chef.popular_ingredients).to eq(["tomato sauce", "garlic", "olive oil"])
+  end
 end
