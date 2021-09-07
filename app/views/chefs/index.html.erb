@@ -1,0 +1,5 @@
+<h1>All ingredients from @chef.name</h1>
+
+<% @chef.dishes.each do |dish| %>
+  <%= dish.ingredients %>
+<% end %>
