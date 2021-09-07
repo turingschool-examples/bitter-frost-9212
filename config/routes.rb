@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :dishes, only: [:show, :new, :destroy]
+
+  resources :chefs, only: [:show, :new, :destroy]
+  get '/chefs/:id/ingredients', to: 'chef_ingredients#show', as: 'chef_ingredients'
+
+  resources :ingredients, only: [:show, :new, :destroy]
 end
