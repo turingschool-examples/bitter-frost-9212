@@ -9,6 +9,9 @@ RSpec.describe 'dish show page' do
     dish = chef.dishes.create!(name: 'Cereal', description: 'Milk not included')
     ingredient1 = Ingredient.create!(name: 'Fruit loops', calories: 30)
     ingredient2 = Ingredient.create!(name: 'Bowl', calories: 0)
+    # require "pry"; binding.pry
+    dish.ingredients << ingredient1
+    dish.ingredients << ingredient2
 
     visit "/dishes/#{dish.id}"
 
