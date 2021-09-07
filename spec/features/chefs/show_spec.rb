@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Chef do
+RSpec.describe 'chefs show page' do
   before(:each) do
     @chef_1 = Chef.create!(name: "Ryan Gatorman")
+    @chef_2 = Chef.create!(name: "Risky Riskin")
     @dish_1 = Dish.create!(name: "Chilli of Forgiveness", description: "White bean turkey chilli with fall vegetables", chef: @chef_1)
     @dish_2 = Dish.create!(name: "Breakfast Bowl", description: "Easy breakfast bowl to start any day.", chef: @chef_1)
     @dish_3 = Dish.create!(name: "Egg Roll in a Bowl", description: "Tasty Asian inspired lunch bowl", chef: @chef_1)
@@ -23,21 +24,30 @@ RSpec.describe Chef do
     @dish_3.ingredients << @ingredient_4
     @dish_3.ingredients << @ingredient_6
   end
-  describe 'relationships' do
-    it { should have_many(:dishes) }
+
+  it 'displays' do
+    visit "/chefs/#{@chef_1.id}"
+
+    expect(page).to have_content(@chef_1.name)
+    expect(page).to_not have_content(@chef_2.name)
+    expect(page).to have_content(@ingredient_3.name)
+    expect(page).to have_content(@ingredient_4.name)
+    expect(page).to have_content(@ingredient_1.name)
+    expect(@ingredient_3.name).to appear_before(@ingredient_4.name, only_text: true)
+    expect(@ingredient_4.name).to appear_before(@ingredient_1.name, only_text: true)
+    expect(page).to have_button("#{@chef_1.name} Trusted Ingredients")
+    expect(page).to_not have_button("#{@chef_2.name} Trusted Ingredients")
   end
 
-  describe 'instance methods' do
-    it 'has list of all ingredients' do
-      expect(@chef_1.all_ing).to eq([@ingredient_1, @ingredient_2, @ingredient_3, @ingredient_3, @ingredient_4, @ingredient_5, @ingredient_1, @ingredient_3, @ingredient_4, @ingredient_6])
-    end
+  it 'has link to chefs ingredients' do
+    visit "/chefs/#{@chef_1.id}"
 
-    it 'has list of unique ingredients' do
-      expect(@chef_1.all_ing_uniq).to eq([@ingredient_1, @ingredient_2, @ingredient_3, @ingredient_4, @ingredient_5, @ingredient_6])
-    end
+    click_on "#{@chef_1.name} Trusted Ingredients"
+    expect(current_path).to eq("/chefs/#{@chef_1.id}/ingredients")
 
-    it 'has most popular ingredients' do
-      expect(@chef_1.popular_ing).to eq([@ingredient_3, @ingredient_4, @ingredient_1])
-    end
+    visit "/chefs/#{@chef_2.id}"
+
+    click_on "#{@chef_2.name} Trusted Ingredients"
+    expect(current_path).to eq("/chefs/#{@chef_2.id}/ingredients")
   end
 end
