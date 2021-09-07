@@ -22,6 +22,12 @@
 
        expect(page).to have_content("Chef Remy")
        expect(page).to have_link(@dish.name)
+       expect(page).to have_link("All Ingredients")
+
+       click_on "All Ingredients"
+
+       expect(page).to have_content(@ingredients1)
+       expect(page).to have_content(@ingredients1)
      end
    end
  end

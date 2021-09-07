@@ -1,4 +1,5 @@
 class IngredientsController < ApplicationController
+
   def index
     @ingredients = Ingredient.all
   end
@@ -13,4 +14,5 @@ class IngredientsController < ApplicationController
   def ingredient_params
     params.permit(:name, :calories)
   end
+  
 end

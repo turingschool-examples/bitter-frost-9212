@@ -1,4 +1,5 @@
 class ChefsController < ApplicationController
+
   def index
     @chefs = Chef.all
   end
@@ -6,6 +7,7 @@ class ChefsController < ApplicationController
   def show
     @chef = Chef.find(params[:id])
     @dishes = @chef.dishes.all
+    @ingredients = @chef.ingredients.all
   end
 
   def new

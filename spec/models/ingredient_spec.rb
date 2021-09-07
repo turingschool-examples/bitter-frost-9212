@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Dish do
+RSpec.describe Ingredient do
   before :each do
     @chef = Chef.create!(name: "Chef Remy")
     @dish = @chef.dishes.create!(name: "Pasta", description: "Meatball pasta")
@@ -10,8 +10,7 @@ RSpec.describe Dish do
   end
 
   describe 'relationships' do
-    it { should belong_to(:chef) }
-    it { should have_many(:ingredients) }
+    it { should have_many(:dishes) }
   end
 
 end

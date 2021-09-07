@@ -13,8 +13,8 @@ class DishesController < ApplicationController
   end
 
   def create
-    @chef = Chef.find(params[:id])
-    @dish = @chef.dishes.create!(dish_params)
+    # @chef = Chef.find(params[:id])
+    @dish = Dish.create(dish_params)
 
     redirect_to "/dishes"
   end
