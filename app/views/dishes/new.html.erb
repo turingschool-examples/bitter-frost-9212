@@ -1,8 +1,0 @@
-<h1>Add New Dish</h1>
-<%= form_with url: "/dishes", method: :post, local: true do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %><br>
-  <%= form.label :description %>
-  <%= form.text_field :description %><br>
-  <%= form.submit "Submit" %>
-<% end %>

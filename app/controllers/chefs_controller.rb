@@ -5,9 +5,9 @@ class ChefsController < ApplicationController
   end
 
   def show
-    @chef = Chef.find(params[:id])
+    @chef = Chef.find(params[:chef_id])
     @dishes = @chef.dishes.all
-    @ingredients = @chef.ingredients.all
+    # @ingredients = @chef.dishes.ingredients.all
   end
 
   def new
@@ -20,11 +20,11 @@ class ChefsController < ApplicationController
   end
 
   def edit
-    @chef = Chef.find(params[:id])
+    @chef = Chef.find(params[:chef_id])
   end
 
   def update
-    chef = Chef.find(params[:id])
+    chef = Chef.find(params[:chef_id])
     chef.update(chef_params)
 
     chef.save
@@ -33,7 +33,7 @@ class ChefsController < ApplicationController
   end
 
   def destroy
-    Chef.destroy(params[:id])
+    Chef.destroy(params[:chef_id])
 
     redirect_to "/chefs"
   end

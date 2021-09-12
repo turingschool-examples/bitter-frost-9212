@@ -3,21 +3,21 @@ Rails.application.routes.draw do
   get "/dishes", to: "dishes#index"
   get "/dishes/new", to: "dishes#new"
   post "/dishes", to: "dishes#create"
-  get "/dishes/:id", to: "dishes#show"
+  get "/dishes/:dish_id", to: "dishes#show"
 
   get "/chefs", to: "chefs#index"
   get "/chefs/new", to: "chefs#new"
   post "/chefs", to: "chefs#create"
-  get "/chefs/:id", to: "chefs#show"
+  get "/chefs/:chef_id", to: "chefs#show"
 
-  get "/chefs/:id/ingredients", to: "chef_ingredients#index"
-  get "/chefs/:id/ingredients/new", to: "chef_ingredients#new"
-  post "/chefs/:id/ingredients", to: "chef_ingredients#create"
+  get "/chefs/:chef_id/ingredients", to: "chef_ingredients#index"
+  get "/chefs/:chef_id/ingredients/new", to: "chef_ingredients#new"
+  post "/chefs/:chef_id/ingredients", to: "chef_ingredients#create"
   # get "/chefs/:id/ingredient/:dish_id", to: "chef_dishes#show"
 
-  get "/chefs/:id/dishes", to: "chef_dishes#index"
-  get "/chefs/:id/dishes/new", to: "chef_dishes#new"
-  post "/chefs/:id/dishes", to: "chef_dishes#create"
-  get "/chefs/:id/dishes/:dish_id", to: "chef_dishes#show"
+  get "/chefs/:chef_id/dishes", to: "chef_dishes#index"
+  get "/chefs/:chef_id/dishes/new", to: "chef_dishes#new"
+  post "/chefs/:chef_id/dishes", to: "chef_dishes#create"
+  get "/chefs/:chef_id/dishes/:dish_id", to: "chef_dishes#show"
 
 end

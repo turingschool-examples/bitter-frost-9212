@@ -1,5 +1,5 @@
 <h1>Chef's Ingredients:</h1>
-<% @ingredients.uniq.each do |ingredient| %>
-  <%= ingredient.name %>
-  <%= ingredient.calories %>
+<h3><% @unique_ingredients.each do |ingredient|%> </h3>
+<%= link_to ingredient.name %>
+<%= ingredient.calories %>
 <% end %>

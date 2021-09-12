@@ -1,8 +1,0 @@
-<h1>All Chefs</h1>
-
-<%= link_to "Add New Chef", "/chefs/new" %><br><br>
-
-<% @chefs.each do |chef| %>
-  <h3><%= link_to chef.name, "/chefs/#{chef.id}" %></h3>
-  <p>Created at: <%= chef.created_at.to_date %></p>
-<% end %>
