@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Ingredient do
@@ -7,14 +9,14 @@ RSpec.describe Ingredient do
   end
 
   describe 'attributes' do
-    it "has a name" do
-      ingredient1 = Ingredient.create!(name: "Cheese", calories: 100)
+    it 'has a name' do
+      ingredient1 = Ingredient.create!(name: 'Cheese', calories: 100)
 
-      expect(ingredient1.name).to eq("Cheese")
+      expect(ingredient1.name).to eq('Cheese')
     end
 
-    it "has calories" do
-      ingredient1 = Ingredient.create!(name: "Cheese", calories: 100)
+    it 'has calories' do
+      ingredient1 = Ingredient.create!(name: 'Cheese', calories: 100)
 
       expect(ingredient1.calories).to eq(100)
     end

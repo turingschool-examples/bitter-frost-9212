@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Dish < ApplicationRecord
   belongs_to :chef
 
@@ -5,8 +7,6 @@ class Dish < ApplicationRecord
   has_many :ingredients, through: :dish_ingredients
 
   def total_calories
-    ingredients.sum do |ing|
-      ing.calories
-    end
+    ingredients.sum(&:calories)
   end
 end
